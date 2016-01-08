@@ -18,16 +18,16 @@ describe Sprig::Configuration do
     end
   end
 
-  describe "#shared" do
-    it "returns false by default" do
-      subject.shared.should == false
+  describe "#shared_directory" do
+    it "returns nil by default" do
+      subject.shared_directory.should == nil
     end
 
     it "returns a shared directory" do
-      subject.shared = true
+      subject.shared_directory = 'shared'
       subject.directory = 'seed_files'
 
-      subject.directory.to_path.should == '~/seed_files'
+      subject.directory.to_path.should == '~/seed_files/shared'
     end
   end
 

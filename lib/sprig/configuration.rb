@@ -1,14 +1,14 @@
 module Sprig
   class Configuration
 
-    attr_writer :directory, :logger, :shared
+    attr_writer :directory, :logger, :shared_directory
 
     def directory
-      Rails.root.join(@directory || default_directory, environment_directory)
+      Rails.root.join(@directory || default_directory, source_directory)
     end
 
-    def shared
-      @shared ||= false
+    def shared_directory
+      @shared_directory
     end
 
     def logger
@@ -17,8 +17,8 @@ module Sprig
 
     private
 
-    def environment_directory
-      shared ? '' : Rails.env
+    def source_directory
+      shared_directory || Rails.env
     end
 
     def default_directory
