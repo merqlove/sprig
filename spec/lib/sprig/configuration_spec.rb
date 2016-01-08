@@ -18,6 +18,19 @@ describe Sprig::Configuration do
     end
   end
 
+  describe "#shared" do
+    it "returns false by default" do
+      subject.shared.should == false
+    end
+
+    it "returns a shared directory" do
+      subject.shared = true
+      subject.directory = 'seed_files'
+
+      subject.directory.to_path.should == '~/seed_files'
+    end
+  end
+
   describe "#logger" do
     it "returns an stdout logger by default" do
       logger = double('Logger')
